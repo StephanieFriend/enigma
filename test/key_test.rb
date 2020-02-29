@@ -12,13 +12,20 @@ class KeyTest < Minitest::Test
   def test_it_can_generate_random_key
     key = Key.new
 
-    Key.stubs(:generate_random_key).returns(01234)
-    assert_equal 01234, key.generate_random_key
+    assert_instance_of String, key.generate_random_key
+    assert_equal 5, key.generate_random_key.length
   end
 
   def test_it_can_create_five_digit_with_user_input
     key = Key.new
 
-    assert_equal 00345, key.key_input
+    assert_equal "00345", key.key_input(345)
+  end
+
+  def test_it_can_transform_key
+    key = Key.new
+
+    key.stubs(:generate_random_key).returns("12345")
+    assert_equal [1, 2, 3, 4, 5], key.transform_key("12345")
   end
 end
