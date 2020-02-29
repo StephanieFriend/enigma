@@ -26,6 +26,9 @@ class KeyTest < Minitest::Test
     key = Key.new
 
     key.stubs(:generate_random_key).returns("12345")
-    assert_equal [1, 2, 3, 4, 5], key.transform_key("12345")
+
+    expected = {:A=>"12", :B=>"23", :C=>"34", :D=>"45"}
+
+    assert_equal expected, key.transform_key("12345")
   end
 end

@@ -10,6 +10,12 @@ class Key
   end
 
   def transform_key(key)
-    key.each_char.map(&:to_i)
+    key.split.reduce({}) do |acc, k|
+      acc[:A] = k[0] + k[1]
+      acc[:B] = k[1] + k[2]
+      acc[:C] = k[2] + k[3]
+      acc[:D] = k[3] + k[4]
+      acc
+    end
   end
 end
