@@ -23,6 +23,7 @@ class DatedTest < Minitest::Test
 
     DateTime.stubs(:now).returns(DateTime.new(2020, 2, 29))
 
-
+    expected = {:A=>2, :B=>2, :C=>4, :D=>8}
+    assert_equal expected, dated.transform_date("29/02/20")
   end
 end
