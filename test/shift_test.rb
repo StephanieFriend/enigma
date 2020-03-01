@@ -13,9 +13,11 @@ class ShiftTest < Minitest::Test
 
   def test_it_can_return_final_shift
     shift = Shift.new
+    dated = Dated.new
 
-    expected = {:A=>53, :B=>88, :C=>23, :D=>35}
+    Key.stubs(:generate_random_key).returns("12345")
+    DateTime.stubs(:now).returns(DateTime.new(2020, 2, 29))
 
-    assert_equal expected, shift.final_shift_key
+    assert_equal [14, 25, 38, 53], shift.final_shift_key
   end
 end
