@@ -2,9 +2,9 @@ require 'date'
 
 class Dated
 
-  def current_date
-    DateTime.now.strftime("%d/%m/%y")
-  end
+  # def current_date
+  #   DateTime.now.strftime("%d/%m/%y")
+  # end
 
   # def date_input
   #   gets.chomp
