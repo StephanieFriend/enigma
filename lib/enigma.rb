@@ -68,7 +68,13 @@ class Enigma
   end
 
   def shift_amount(message)
-    message[-4..-1]
+    array = []
+    x = message[-4..-1].split('')
+    array << alphabet.find_index(x[0])
+    array << alphabet.find_index(x[1])
+    array << alphabet.find_index(x[2])
+    array << alphabet.find_index(x[3])
+    array
   end
 
   def transform_end_to_index
