@@ -102,4 +102,16 @@ class EnigmaTest < Minitest::Test
 
     assert_equal "hello world!", enigma.message_encrypt_decrypt(split_characters2, shift_keys2, is_encrypt2)
   end
+
+  def test_it_can_crack
+    enigma = Enigma.new
+
+    expected = {
+        :decryption => "hello world!",
+        :date => "290220",
+        :key => "12345"
+    }
+
+    assert_equal expected, enigma.crack("vcwkbygnejo!", "290220")
+  end
 end
