@@ -51,6 +51,15 @@ class Enigma
 
   def crack(ciphertext, date)
     shift_amount(ciphertext)
+    get_offsets(ciphertext, date)
+  end
+
+  def get_offsets(message, date)
+    shifts = Shift.transform_date(date)
+    order = order_of_shifts(message)
+    order.map do |key|
+      shifts[key]
+    end
   end
 
   def order_of_shifts(message)

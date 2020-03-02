@@ -115,6 +115,12 @@ class EnigmaTest < Minitest::Test
     assert_equal expected, enigma.crack("vcwkbygnejo!ncyc", "290220")
   end
 
+  def test_it_can_find_offset
+    enigma = Enigma.new
+
+    assert_equal [8, 2, 2, 4], enigma.get_offsets("vcwkbygnejo", "290220")
+  end
+
   def test_it_can_find_order_of_shifts
     enigma = Enigma.new
 
@@ -132,6 +138,7 @@ class EnigmaTest < Minitest::Test
 
     assert_equal [14, 25, 11, 26], enigma.shift_amount("vcwkbygnejo!ncyc")
   end
+
   def test_it_can_find_index_number_of_ciphertext
     enigma = Enigma.new
 
