@@ -68,6 +68,10 @@ class Enigma
   end
 
   def shift_amount(message)
+
+  end
+
+  def transform_ciphertext_last_characters(message)
     array = []
     x = message[-4..-1].split('')
     array << alphabet.find_index(x[0])

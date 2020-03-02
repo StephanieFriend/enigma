@@ -130,8 +130,9 @@ class EnigmaTest < Minitest::Test
   def test_it_can_find_index_number_of_ciphertext
     enigma = Enigma.new
 
-    assert_equal [13, 2, 24, 2], enigma.shift_amount("vcwkbygnejo!ncyc")
+    assert_equal [13, 2, 24, 2], enigma.transform_ciphertext_last_characters("vcwkbygnejo!ncyc")
   end
+
   def test_it_can_transform_end_to_index
     enigma = Enigma.new
 
