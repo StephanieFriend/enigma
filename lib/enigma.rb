@@ -54,6 +54,14 @@ class Enigma
     get_offsets(ciphertext, date)
   end
 
+  def find_end_key(message, date)
+    array = []
+    shift_amount(message).zip(get_offsets(message, date)) do |x, y|
+      array << (x - y).to_s.rjust(2, "0")
+    end
+    array
+  end
+
   def get_offsets(message, date)
     shifts = Shift.transform_date(date)
     order = order_of_shifts(message)
