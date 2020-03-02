@@ -50,7 +50,7 @@ class Enigma
   end
 
   def crack(ciphertext, date)
-    order_of_shifts(ciphertext)
+    shift_amount(ciphertext)
   end
 
   def order_of_shifts(message)
@@ -67,5 +67,17 @@ class Enigma
     end
   end
 
+  def shift_amount(message)
+    message[-4..-1]
+  end
+
+  def transform_end_to_index
+    array = []
+    array << alphabet.find_index(" ")
+    array << alphabet.find_index("e")
+    array << alphabet.find_index("n")
+    array << alphabet.find_index("d")
+    array
+  end
 
 end
