@@ -107,11 +107,23 @@ class EnigmaTest < Minitest::Test
     enigma = Enigma.new
 
     expected = {
-        :decryption => "hello world!",
+        :decryption => "hello world! end",
         :date => "290220",
         :key => "12345"
     }
 
-    assert_equal expected, enigma.crack("vcwkbygnejo!", "290220")
+    assert_equal expected, enigma.crack("vcwkbygnejo!ncyc", "290220")
+  end
+
+  def test_it_can_find_order_of_shifts
+    enigma = Enigma.new
+
+    message1 = "vcwkbygnejo!ncyc"
+    message2 = "vcwkbygnejo"
+    message3 = "vcwkb"
+
+    assert_equal [:A, :B, :C, :D], enigma.order_of_shifts(message1)
+    assert_equal [:A, :B, :C], enigma.order_of_shifts(message2)
+    assert_equal [:A], enigma.order_of_shifts(message3)
   end
 end

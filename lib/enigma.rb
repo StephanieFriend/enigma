@@ -48,4 +48,24 @@ class Enigma
     end
     message.join
   end
+
+  def crack(ciphertext, date)
+    order_of_shifts(ciphertext)
+  end
+
+  def order_of_shifts(message)
+    x = split_message(message)
+    y = x.last.length
+    if y == 4
+      [:A, :B, :C, :D]
+    elsif y ==3
+      [:A, :B, :C]
+    elsif y == 2
+      [:A, :B]
+    else
+      [:A]
+    end
+  end
+
+
 end
