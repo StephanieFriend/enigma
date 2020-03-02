@@ -123,7 +123,7 @@ class EnigmaTest < Minitest::Test
     message3 = "vcwkb"
 
     assert_equal [:A, :B, :C, :D], enigma.order_of_shifts(message1)
-    assert_equal [:A, :B, :C], enigma.order_of_shifts(message2)
-    assert_equal [:A], enigma.order_of_shifts(message3)
+    assert_equal [:D, :A, :B, :C], enigma.order_of_shifts(message2)
+    assert_equal [:B, :C, :D, :A], enigma.order_of_shifts(message3)
   end
 end

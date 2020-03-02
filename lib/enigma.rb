@@ -59,11 +59,11 @@ class Enigma
     if y == 4
       [:A, :B, :C, :D]
     elsif y ==3
-      [:A, :B, :C]
+      [:D, :A, :B, :C]
     elsif y == 2
-      [:A, :B]
+      [:C, :D, :A, :B]
     else
-      [:A]
+      [:B, :C, :D, :A]
     end
   end
 
