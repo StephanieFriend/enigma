@@ -68,7 +68,15 @@ class Enigma
   end
 
   def shift_amount(message)
-
+    array = []
+    transform_ciphertext_last_characters(message).zip(transform_end_to_index) do |x, y|
+      z = x - y
+      if z < 0
+        z += 27
+      end
+      array << z
+    end
+    array
   end
 
   def transform_ciphertext_last_characters(message)

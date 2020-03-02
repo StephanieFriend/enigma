@@ -127,6 +127,11 @@ class EnigmaTest < Minitest::Test
     assert_equal [:B, :C, :D, :A], enigma.order_of_shifts(message3)
   end
 
+  def test_it_can_determine_shift_amount
+    enigma = Enigma.new
+
+    assert_equal [14, 25, 11, 26], enigma.shift_amount("vcwkbygnejo!ncyc")
+  end
   def test_it_can_find_index_number_of_ciphertext
     enigma = Enigma.new
 
