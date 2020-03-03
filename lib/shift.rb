@@ -31,4 +31,5 @@ class Shift
     end
     final_shifts.values
   end
+
 end
