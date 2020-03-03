@@ -24,10 +24,10 @@ class EnigmaTest < Minitest::Test
 
     DateTime.stubs(:now).returns(DateTime.new(2020, 2, 29))
 
-    date =  DateTime.now.strftime("%d/%m/%y")
+    date =  DateTime.now.strftime("%d%m%y")
     enigma.encrypt("Hello world", "12345", date)
 
-    assert_equal "29/02/20", date
+    assert_equal "290220", date
   end
 
   def test_it_can_encrypt
@@ -94,12 +94,26 @@ class EnigmaTest < Minitest::Test
     shift_keys1 = [14, 25, 38, 53]
     is_encrypt1 = true
 
-    assert_equal "vcwkbygnejo!", enigma.message_encrypt_decrypt(split_characters1, shift_keys1, is_encrypt1)
+    assert_equal "vcwkbygnejo!", enigma.join_message(split_characters1, shift_keys1, is_encrypt1)
 
     split_characters2 = [["v", "c", "w", "k"], ["b", "y", "g", "n"], ["e", "j", "o", "!"]]
     shift_keys2 = [14, 25, 38, 53]
     is_encrypt2 = false
 
-    assert_equal "hello world!", enigma.message_encrypt_decrypt(split_characters2, shift_keys2, is_encrypt2)
+    assert_equal "hello world!", enigma.join_message(split_characters2, shift_keys2, is_encrypt2)
   end
+
+  def test_it_can_crack
+    skip
+    enigma = Enigma.new
+
+    expected = {
+        :decryption => "hello world! end",
+        :date => "290220",
+        :key => "12345"
+    }
+
+    assert_equal expected, enigma.crack("vcwkbygnejo!ncyc", "290220")
+  end
+
 end
