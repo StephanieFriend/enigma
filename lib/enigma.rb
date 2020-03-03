@@ -5,7 +5,7 @@ class Enigma
 
   def encrypt(message, key = rand(10 ** 5).to_s.rjust(5, "0"), date = DateTime.now.strftime("%d%m%y"))
     {
-        :encryption => message_encrypt_decrypt(split_message(message), Shift.final_shift_key(key, date), is_encrypt = true),
+        :encryption => join_message(split_message(message), Shift.final_shift_key(key, date), is_encrypt = true),
         :key => key,
         :date => date
     }
@@ -13,7 +13,7 @@ class Enigma
 
   def decrypt(ciphertext, key = rand(10 ** 5).to_s.rjust(5, "0"), date = DateTime.now.strftime("%d%m%y"))
     {
-        :decryption => message_encrypt_decrypt(split_message(ciphertext), Shift.final_shift_key(key, date), is_encrypt = false),
+        :decryption => join_message(split_message(ciphertext), Shift.final_shift_key(key, date), is_encrypt = false),
         :key => key,
         :date => date
     }
@@ -35,14 +35,15 @@ class Enigma
     alphabet.rotate(shift_amount)[alphabet.find_index(letter_index)]
   end
 
-  def message_encrypt_decrypt(split_characters, shift_keys, is_encrypt)
+  def join_message(split_characters, shift_keys, is_encrypt)
     message = []
-    split_characters.each do |group|
-      group.each_with_index do |char, index |
-        if alphabet.include?(char)
-          message << (find_new_character(((is_encrypt && shift_keys[index]) || (!is_encrypt && -shift_keys[index])), char))
+    split_characters.each do |letter_group|
+      letter_group.each_with_index do |character, index|
+        if alphabet.include?(character)
+          message << (find_new_character(((is_encrypt && shift_keys[index]) ||
+              (!is_encrypt && -shift_keys[index])), character))
         else
-          message << char
+          message << character
         end
       end
     end

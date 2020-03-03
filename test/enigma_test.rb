@@ -94,13 +94,13 @@ class EnigmaTest < Minitest::Test
     shift_keys1 = [14, 25, 38, 53]
     is_encrypt1 = true
 
-    assert_equal "vcwkbygnejo!", enigma.message_encrypt_decrypt(split_characters1, shift_keys1, is_encrypt1)
+    assert_equal "vcwkbygnejo!", enigma.join_message(split_characters1, shift_keys1, is_encrypt1)
 
     split_characters2 = [["v", "c", "w", "k"], ["b", "y", "g", "n"], ["e", "j", "o", "!"]]
     shift_keys2 = [14, 25, 38, 53]
     is_encrypt2 = false
 
-    assert_equal "hello world!", enigma.message_encrypt_decrypt(split_characters2, shift_keys2, is_encrypt2)
+    assert_equal "hello world!", enigma.join_message(split_characters2, shift_keys2, is_encrypt2)
   end
 
   def test_it_can_crack
