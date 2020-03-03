@@ -115,6 +115,12 @@ class EnigmaTest < Minitest::Test
     assert_equal expected, enigma.crack("vcwkbygnejo!ncyc", "290220")
   end
 
+  def test_it_can_find_original_key
+    enigma = Enigma.new
+
+    assert_equal "12345", enigma.find_original_key("vcwkbygnejo!ncyc", "290220")
+  end
+
   def test_it_can_find_end_key
     enigma = Enigma.new
 

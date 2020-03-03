@@ -54,6 +54,32 @@ class Enigma
     get_offsets(ciphertext, date)
   end
 
+  def find_original_key(message, date)
+    array = find_end_key(message, date)
+    while array[0][1] != array[1][0]
+      x = array[1].to_i
+      x += 27
+      array[1] = x.to_s
+    end
+    while array[1][1] != array[2][0]
+      y = array[2].to_i
+      y += 27
+      array[2] = y.to_s
+    end
+    while array[2][1] != array[3][0]
+      z = array[3].to_i
+      z += 27
+      array[3] = z.to_s
+    end
+    new_array = []
+    new_array << array[0][0]
+    new_array << array[1][0]
+    new_array << array[2][0]
+    new_array << array[3][0]
+    new_array << array[3][1]
+    new_array.join
+  end
+
   def find_end_key(message, date)
     array = []
     shift_amount(message).zip(get_offsets(message, date)) do |x, y|
