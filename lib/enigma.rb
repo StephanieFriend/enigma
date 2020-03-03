@@ -55,21 +55,21 @@ class Enigma
   end
 
   def find_original_key(message, date)
-    array = find_end_key(message, date)
+    num = find_end_key(message, date)
+    array = num.map do |z|
+      [z.div(10), z % 10]
+      end
     while array[0][1] != array[1][0]
-      x = array[1].to_i
-      x += 27
-      array[1] = x.to_s
+      x = (num[1] + 27) % 100
+      array[1] = [x.div(10), x % 10]
     end
     while array[1][1] != array[2][0]
-      y = array[2].to_i
-      y += 27
-      array[2] = y.to_s
+      y = (num[2] + 27) % 100
+      array[2] = [y.div(10), y % 10]
     end
     while array[2][1] != array[3][0]
-      z = array[3].to_i
-      z += 27
-      array[3] = z.to_s
+      z = (num[3] + 27) % 100
+      array[3] = [z.div(10), z % 10]
     end
     new_array = []
     new_array << array[0][0]
@@ -83,7 +83,7 @@ class Enigma
   def find_end_key(message, date)
     array = []
     shift_amount(message).zip(get_offsets(message, date)) do |x, y|
-      array << (x - y).to_s.rjust(2, "0")
+      array << x - y
     end
     array
   end
