@@ -124,7 +124,7 @@ class EnigmaTest < Minitest::Test
   def test_it_can_find_end_key
     enigma = Enigma.new
 
-    assert_equal ["12", "23", "07", "18"], enigma.find_end_key("vcwkbygnejo!ncyc", "290220")
+    assert_equal [12, 23, 7, 18], enigma.find_end_key("vcwkbygnejo!ncyc", "290220")
   end
 
   def test_it_can_find_offset

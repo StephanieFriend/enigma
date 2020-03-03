@@ -11,7 +11,7 @@ class Shift
   end
 
   def self.transform_date(date)
-    date_index = (date.delete("/").to_i ** 2).digits.pop(4)
+    date_index = (date.to_i ** 2).digits.pop(4)
     date_index.reduce({}) do |acc, _index|
       acc[:A] = date_index[0]
       acc[:B] = date_index[1]
